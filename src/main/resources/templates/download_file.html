@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"> <!-- Кодировка нашей страницы -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Для своместимости с IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Для красивого и правильного отображения на мобильных устройств -->
+    <meta name="description" content="Это мой первый пример страницы"> <!-- Описание страницы -->
+    <meta name="author" content="Рамиль"> <!-- Автор страницы -->
+    <title>Загрузка файла</title>
+</head>
+<body>
+<h1>Загрузка файла формата .xls</h1>
+<form method="POST" th:action="@{/upload}" enctype="multipart/form-data">
+    <input type="file" name="file" id="file" accept=".xls"/> <br/>
+    <input type="submit" value="Upload" name="upload" id="upload" />
+</form>
+<br/>
+<br/>
+<form method="get" th:action="@{/}">
+    <button type="submit" name="submit" value="value" class="link-button">Back</button>
+</form>
+</body>
+</html>

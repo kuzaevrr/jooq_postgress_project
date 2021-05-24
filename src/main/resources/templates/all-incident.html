@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"> <!-- Кодировка нашей страницы -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Для своместимости с IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Для красивого и правильного отображения на мобильных устройств -->
+    <meta name="description" content="Это мой первый пример страницы"> <!-- Описание страницы -->
+    <meta name="author" content="Рамиль"> <!-- Автор страницы -->
+    <title>Отображение инцидентов</title>
+    <style>table th, table td {
+        padding: 5px;
+    }</style>
+</head>
+
+
+<body>
+<h1>Отображение всех инцидентов</h1>
+<br/>
+
+<!--<input type="button" value="Continue to schedule" />-->
+<form method="get" th:action="@{/}">
+    <button type="submit" name="submit" value="value" class="link-button">Back</button>
+</form>
+<br>
+Количество инцидентов:
+<div th:utext="${allEmps.size()}"></div>
+<br/>
+<table border="1">
+    <tr>
+        <th>Код инцидента</th>
+        <th>Статус</th>
+        <th>Приоритет</th>
+        <th>Группа ТП3</th>
+        <th>Ответственный ТП3</th>
+        <th>Время Назначен""</th>
+        <th>Время В работе""</th>
+        <th>Время Выполнено""</th>
+        <th>Предельный срок исполнения</th>
+        <th>Просрочено</th>
+        <th>Код завершения</th>
+    </tr>
+
+    <tr th:each="person : ${allEmps}">
+        <td th:utext="${person.getIdIcident()}"></td>
+        <td th:utext="${person.getStatus()}"></td>
+        <td th:utext="${person.getPriority()}"></td>
+        <td th:utext="${person.getGroupTP3()}"></td>
+        <td th:utext="${person.getResponsibleTP3()}"></td>
+        <td th:utext="${person.getTimeAppointment()}"></td>
+        <td th:utext="${person.getTimeWork()}"></td>
+        <td th:utext="${person.getTimeDone()}"></td>
+        <td th:utext="${person.getDeadline()}"></td>
+        <td th:utext="${person.isOverdue()}"></td>
+        <td th:utext="${person.getCodeCompletion()}"></td>
+    </tr>
+</table>
+</body>
+</html>

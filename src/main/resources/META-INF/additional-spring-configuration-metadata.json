@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "org.springframework.beans.factory.BeanCreationException",
+      "type": "java.lang.String",
+      "description": "Description for org.springframework.beans.factory.BeanCreationException."
+  }
+] }
