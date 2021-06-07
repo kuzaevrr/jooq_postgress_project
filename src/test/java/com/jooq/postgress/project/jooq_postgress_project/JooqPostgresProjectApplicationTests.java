@@ -1,6 +1,7 @@
 package com.jooq.postgress.project.jooq_postgress_project;
 
 import com.jooq.postgress.project.jooq_postgress_project.parser.Parser;
+import com.jooq.postgress.project.jooq_postgress_project.pojo.DayOff;
 import com.jooq.postgress.project.jooq_postgress_project.pojo.IncObject;
 import com.jooq.postgress.project.jooq_postgress_project.service.ServiceJooq;
 import org.junit.jupiter.api.Test;
@@ -9,11 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.sql.Timestamp;
 import java.util.List;
 
-import static junit.framework.TestCase.assertFalse;
-
-import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -25,37 +24,65 @@ class JooqPostgresProjectApplicationTests {
     @Autowired
     Parser parser;
 
-
     @Test
-    void contextLoads() {
-        parser.parseXLS(serviceJooq);
-    }
-
-    @Test
-    public void findAllIncidents() {
-        List<IncObject> incObjects = serviceJooq.getAllIncidents();
-        assertNotNull(incObjects);
-        assertFalse(incObjects.isEmpty());
-        for (IncObject incObject : incObjects) {
-            System.err.println(incObject);
+    void getAllDayOff(){
+        List<DayOff> dayOffs =  serviceJooq.getAllDayOff();
+        for(DayOff dayOff: dayOffs){
+            System.out.println(dayOff.getDayOff());
         }
     }
 
     @Test
-    void getIncident() {
-        serviceJooq.getIncident("08");
+    void addDayOff(){
+        String date = "2021-05-10 00:00:00.000000000";
+        serviceJooq.addDayOff(Timestamp.valueOf(date));
     }
 
     @Test
-    void deleteIncident() {
-        serviceJooq.deleteIncident("80");
+    void getDayOff(){
+        String date = "2021-05-10 00:00:00.000000000";
+        System.out.println(serviceJooq.getDayOff(Timestamp.valueOf(date)).toString());
     }
 
     @Test
-    void deleteAll(){
-        serviceJooq.deleteAll();
+    void deleteDayOff(){
+        String date = "2021-05-10 00:00:00.000000000";
+        DayOff dayOff = new DayOff(Timestamp.valueOf(date));
+        serviceJooq.deleteDayOff(dayOff);
+        System.out.println("Дата удалена: "+ dayOff);
     }
 
+
+//    @Test
+//    void contextLoads() {
+//        parser.parseXLS(serviceJooq);
+//    }
+//
+//    @Test
+//    public void findAllIncidents() {
+//        List<IncObject> incObjects = serviceJooq.getAllIncidents();
+//        assertNotNull(incObjects);
+//        assertFalse(incObjects.isEmpty());
+//        for (IncObject incObject : incObjects) {
+//            System.err.println(incObject);
+//        }
+//    }
+//
+//    @Test
+//    void getIncident() {
+//        serviceJooq.getIncident("08");
+//    }
+//
+//    @Test
+//    void deleteIncident() {
+//        serviceJooq.deleteIncident("80");
+//    }
+//
+//    @Test
+//    void deleteAll(){
+//        serviceJooq.deleteAll();
+//    }
+//----------------------------------------
 //    @Test
 //    public void findPostById()  {
 //        Post post = blogService.getPost(1);

@@ -2,6 +2,7 @@ package com.jooq.postgress.project.jooq_postgress_project.dao;
 
 import com.jooq.postgress.project.jooq_postgress_project.pojo.IncObject;
 
+
 import com.jooq.postgress.project.jooq_postgress_project.tables.Incidents;
 import org.jooq.DSLContext;
 import org.jooq.Record;

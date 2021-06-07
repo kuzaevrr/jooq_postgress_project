@@ -14,3 +14,28 @@ CREATE TABLE INCIDENTS (
      code_completion varchar(25),
   PRIMARY KEY (id_incident)
 );
+
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE IF NOT EXISTS users (
+     username VARCHAR(10) NOT NULL,
+     password VARCHAR(32) NOT NULL,
+     enabled BOOLEAN NOT NULL,
+     PRIMARY KEY (username)
+);
+
+DROP TABLE IF EXISTS authorities;
+
+CREATE TABLE IF NOT EXISTS authorities (
+     username VARCHAR(10) NOT NULL,
+     authority VARCHAR(10) NOT NULL,
+     FOREIGN KEY (username) REFERENCES users(username)
+);
+
+DROP TABLE IF EXISTS dayOff;
+
+CREATE TABLE IF NOT EXISTS dayOff (
+     dayOff DATETIME NOT NULL,
+    PRIMARY KEY (dayOff)
+);
+

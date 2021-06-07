@@ -28,6 +28,11 @@ public class MyController {
     @Autowired
     private LogicPaymentKPI logicPaymentKPI;
 
+    @GetMapping("/api")
+    public double resultKpi() throws ParseException{
+        return logicPaymentKPI.logicExcel(service);
+    }
+
     @GetMapping("/")
     public String mainMethod(Model model) throws ParseException {
         double resultKpi = logicPaymentKPI.logicExcel(service);
